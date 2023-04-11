@@ -1,0 +1,1 @@
+console.log("ms_operador.js");
