@@ -11,7 +11,7 @@ const schema = buildSchema(`
     }
 `);
 
-const response = await fetch('/graphal', {
+const response = await fetch('/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
