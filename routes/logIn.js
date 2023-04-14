@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const readline = require('readline'); //Provicional, para insertar info por consola
-const singkey = require('../utilities/jwtSings.js');
 const graphqlFetch = require('../utilities/fetchUtilitie.js');
 const {getOperadoresQuery} = require('../queries/getQueries.js');
-
+const matchPassword = require('../utilities/matchPassword.js');
 
 router.get('/', async (req, res, next) => {
     try{
@@ -15,17 +14,26 @@ router.get('/', async (req, res, next) => {
             output: process.stdout
         });
 
-        rl.question('Nombre operador: ', (name) => {
+        rl.question('Nombre operador: ', async (name) => {
             console.log(`Hola ${name}!`);
-            theResponse.data.operador.forEach(operador => {
-                if (operador.id_operador_asignado == name) {
+            theResponse.data.operador.forEach( async (operador) => {
+                if (operador.id_operador_asignado === name) {
                     console.log(`El valor ${name} coincide con el id_operador_asignado ${operador.id_operador_asignado}`);
-                    const token = singkey(name);
-                    console.log({token: token, usuario: name});
+                    
+                    const password = await new Promise((resolve, reject) => {
+                        rl.question('Contrasena: ', (contrasena) => {
+                            resolve(contrasena);
+                        });
+                    });
+
+                    matchPassword(password, operador.crp_contrasena, name);
+
+                    rl.close();
                 }
             });
-            rl.close();
         });
+
+        
 
         res.send(theResponse.data.operador)
 
