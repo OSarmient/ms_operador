@@ -4,8 +4,8 @@ const socketApp = require('../chat/socketapp.js');
 
 
 /* GET home page. */
-router.post('/', function(req, res, next) {
-  res.send({ title: 'Express' });
+router.post('/', function (req, res, next) {
+    res.send({ title: 'Express' });
 });
 
 module.exports = router;
