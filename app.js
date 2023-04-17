@@ -8,9 +8,13 @@ const indexRouter = require('./routes/index.js');
 const logIn = require('./routes/logIn.js');
 const recibirMensajeRouter = require('./routes/recibirMensaje.js');
 
+const cors = require('cors');
+
 const app = express();
 
 app.set('view engine', 'ejs');
+
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(express.json());

@@ -24,7 +24,7 @@ module.exports = async (password_front, password_bd, name) => {
 
         const variables = {id_operador: name, token: token};
         try{
-            const response = await request("http://168.176.84.62:3000/", mutation, variables);
+            const response = await request("http://localhost:3000/", mutation, variables);
             //console.log('Respuesta de la mutación:', response);
         }catch(error) {
             console.error('Error al realizar la solicitud de mutación:', error);
