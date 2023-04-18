@@ -7,6 +7,7 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index.js');
 const logIn = require('./routes/logIn.js');
 const recibirMensajeRouter = require('./routes/recibirMensaje.js');
+const usuariosPorAtender = require('./routes/usuariosPorAtender.js');
 
 const cors = require('cors');
 
@@ -21,15 +22,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-//Acá debe ir un middleware que verifique el token con JWT
-//Usando app.use(middleware) donde middleware es la función que verifica el token
-
 app.use('/favicon.ico', () => null)
 app.use('/', indexRouter);
 app.use('/logIn', logIn); // LogIn de los operadores 
 app.use('/recibirMensaje', recibirMensajeRouter); // Recibir mensajes de los clientes
 
+//Acá debe ir un middleware que verifique el token con JWT
+//Usando app.use(middleware) donde middleware es la función que verifica el token
 
+app.use('/usuariosPorAtender', usuariosPorAtender); // Obtener usuarios por atender
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

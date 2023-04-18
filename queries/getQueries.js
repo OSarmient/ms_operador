@@ -37,7 +37,7 @@ const getOperadoresQuery = ({ userid, offset, limit }) => `
 `;
 
 // Función que retorna la query para obtener chats
-const getChatsQuery = ({ id_chat, id_usuario, id_operador, documento_usuario, offset, limit, limit_mensajes, offset_mensajes }) => `
+const getChatsQuery = ({ id_chat, id_usuario, id_operador, documento_usuario, offset, limit, limit_mensajes, offset_mensajes,  }) => `
   query {
     chat(
       id_chat: ${id_chat || null},
@@ -48,6 +48,7 @@ const getChatsQuery = ({ id_chat, id_usuario, id_operador, documento_usuario, of
       limit: ${limit || null},
       limit_mensajes: ${limit_mensajes || null},
       offset_mensajes: ${offset_mensajes || null}
+      con_operador: ${con_operador || null}
     ) {
       id_chat
       Mensajes {

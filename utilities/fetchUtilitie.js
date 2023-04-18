@@ -1,4 +1,4 @@
-const server = process.env.SERVER || "http://localhost:3000/"  //"http://168.176.84.62:3000/"
+const server = process.env.GESTION_DATOS_MS || "http://localhost:3000/"  //"http://168.176.84.62:3000/"
 
 module.exports = async (graphqlQuery) => {
     const response = await fetch(server, {
