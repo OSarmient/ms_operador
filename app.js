@@ -9,6 +9,7 @@ const indexRouter = require('./routes/index.js');
 const logIn = require('./routes/logIn.js');
 const recibirMensajeRouter = require('./routes/recibirMensajeRest.js');
 const usuariosPorAtender = require('./routes/usuariosPorAtender.js');
+const logOut = require('./routes/logOut.js')
 
 const cors = require('cors');
 
@@ -29,6 +30,7 @@ app.use('/logIn', logIn); // LogIn de los operadores
 app.use('/recibirMensaje', recibirMensajeRouter); // Recibir mensajes de los clientes
 
 app.use(middlewareUsuario); // Middleware que verifica el token con JWT
+app.use('/logOut', logOut);
 app.use('/usuariosPorAtender', usuariosPorAtender); // Obtener usuarios por atender
 
 // catch 404 and forward to error handler

@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const readline = require('readline'); //Provicional, para insertar info por consola
 const graphqlFetch = require('../utilities/fetchUtilitie.js');
 const {getOperadoresQuery} = require('../queries/getQueries.js');
 const matchPassword = require('../utilities/matchPassword.js');
