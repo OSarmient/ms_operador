@@ -3,6 +3,7 @@ const createError = require('http-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const middlewareUsuario = require('./utilities/middelwareUsuario.js');
 
 const indexRouter = require('./routes/index.js');
 const logIn = require('./routes/logIn.js');
@@ -27,9 +28,7 @@ app.use('/', indexRouter);
 app.use('/logIn', logIn); // LogIn de los operadores 
 app.use('/recibirMensaje', recibirMensajeRouter); // Recibir mensajes de los clientes
 
-//Acá debe ir un middleware que verifique el token con JWT
-//Usando app.use(middleware) donde middleware es la función que verifica el token
-
+app.use(middlewareUsuario); // Middleware que verifica el token con JWT
 app.use('/usuariosPorAtender', usuariosPorAtender); // Obtener usuarios por atender
 
 // catch 404 and forward to error handler
