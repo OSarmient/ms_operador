@@ -4,7 +4,6 @@ const readline = require('readline'); //Provicional, para insertar info por cons
 const graphqlFetch = require('../utilities/fetchUtilitie.js');
 const {getOperadoresQuery} = require('../queries/getQueries.js');
 const matchPassword = require('../utilities/matchPassword.js');
-const io = require("../chat/socketapp.js");
 
 router.post('/', async (req, res, next) => {
     
@@ -16,9 +15,6 @@ router.post('/', async (req, res, next) => {
         theResponse.data.operador.forEach(async (operador) => {
             if (operador.id_operador_asignado === username) {
             userFound = true;
-            
-            io.on("connection", (socket) => {socket.join(operador.id_operador_asignado)});
-
             const isPasswordValid = await matchPassword(password, operador.crp_contrasena, username);
 
             if (isPasswordValid) {
