@@ -7,7 +7,7 @@ const middlewareUsuario = require('./utilities/middelwareUsuario.js');
 
 const indexRouter = require('./routes/index.js');
 const logIn = require('./routes/logIn.js');
-const recibirMensajeRouter = require('./routes/recibirMensaje.js');
+const recibirMensajeRouter = require('./routes/recibirMensajeRest.js');
 const usuariosPorAtender = require('./routes/usuariosPorAtender.js');
 
 const cors = require('cors');

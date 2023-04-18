@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const socketApp = require('../chat/socketapp.js');
+const io = require('../chat/socketapp.js');
 
 //Envío de mensaje a operador por socket
 
 /* GET home page. */
 router.post('/', function (req, res, next) {
-    res.send({ title: 'Express' });
+    const { id_chat, texto_mensaje, hora_mensaje, id_operador_asignado } = req.body;
+    io.to(id_operador_asignado).emit('message', { id_chat, texto_mensaje, hora_mensaje });
+    res.send({ ms: "Mensaje enviado"});
 });
 
 module.exports = router;

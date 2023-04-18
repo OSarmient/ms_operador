@@ -14,7 +14,7 @@ io.on("connection", (socket) => {
     socket.on("message", ({auth_token, id_chat, mensaje})=>{
         try{
             const decoded = jwtValidate(auth_token);
-            socket.join(decoded.id_operador_asignado);
+            socket.join("juan");
             recibirMensajeResolver({ id_chat, mensaje});
         }catch(error){
             socket.emit("error", "No autorizado");
