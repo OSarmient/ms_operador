@@ -11,7 +11,7 @@ const io = require("socket.io")(httpServer, {
 
 io.on("connection", (socket) => {
 
-    socket.on("join", ({auth_token, id_operador_asignado})=>{
+    socket.on("join", ({auth_token})=>{
         try{
             const decoded = jwtValidate(auth_token);
             socket.join(decoded.id_operador_asignado);
