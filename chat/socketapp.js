@@ -1,5 +1,6 @@
 const httpServer = require("http").createServer();
-const recibirMensajeResolver = require("./resolvers/recibirMensaje.js");
+const recibirMensajeResolver = require("./resolvers/recibirMensajeSocket.js");
+const jwtValidate = require("../utilities/jwtValidate.js");
 
 const io = require("socket.io")(httpServer, {
     cors: {
@@ -9,7 +10,17 @@ const io = require("socket.io")(httpServer, {
 });
 
 io.on("connection", (socket) => {
-    socket.on("message", recibirMensajeResolver);
+
+    socket.on("message", ({auth_token, id_chat, mensaje})=>{
+        try{
+            const decoded = jwtValidate(auth_token);
+            socket.join(decoded.id_operador_asignado);
+            recibirMensajeResolver({ id_chat, mensaje});
+        }catch(error){
+            socket.emit("error", "No autorizado");
+        }
+    });
+
 });
 
 

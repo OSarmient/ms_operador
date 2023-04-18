@@ -9,7 +9,7 @@ module.exports =
         var msg = {
             id_chat: id_chat,             //Se debe cambiar por el id del chat
             texto_mensaje: mensaje,
-            hora_mensaje: fecha,
+            hora_mensaje: fecha,    //Se usa la gecha del servidor
             de_operador: true   
         }
 
