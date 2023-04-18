@@ -18,8 +18,7 @@ router.post('/', async (req, res, next) => {
             const isPasswordValid = await matchPassword(password, operador.crp_contrasena, username);
 
             if (isPasswordValid) {
-                res.header('auth_token', operador.auth_token);
-                res.status(200).json({ message: operador.auth_token});
+                res.status(200).json({ auth_token: operador.auth_token});
             } else {
                 res.status(401).json({ message: 'Contraseña incorrecta.' });
             }
