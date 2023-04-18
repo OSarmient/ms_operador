@@ -29,6 +29,8 @@ app.use('/', indexRouter);
 app.use('/logIn', logIn); // LogIn de los operadores 
 app.use('/recibirMensaje', recibirMensajeRouter); // Recibir mensajes de los clientes
 
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
