@@ -1,5 +1,5 @@
 const httpServer = require("http").createServer();
-const recibirMensajeResolver = require("./resolvers/recibirMensajeSocket.js");
+const recibirMensajeResolver = require("./resolvers/enviarMensajeSocket.js");
 const jwtValidate = require("../utilities/jwtValidate.js");
 
 const io = require("socket.io")(httpServer, {

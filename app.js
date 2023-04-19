@@ -27,11 +27,15 @@ app.use(cookieParser());
 app.use('/favicon.ico', () => null)
 app.use('/', indexRouter);
 app.use('/logIn', logIn); // LogIn de los operadores 
-app.use('/recibirMensaje', recibirMensajeRouter); // Recibir mensajes de los clientes
 
-app.use(middlewareUsuario); // Middleware que verifica el token con JWT
+
+//Esta parte cambiará a web sockets
+app.use(middlewareUsuario); // Middleware que verifica el token con JWT sobre web Sockets
+app.use('/recibirMensaje', recibirMensajeRouter); // Recibir mensajes de los clientes
 app.use('/logOut', logOut);
 app.use('/usuariosPorAtender', usuariosPorAtender); // Obtener usuarios por atender
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
