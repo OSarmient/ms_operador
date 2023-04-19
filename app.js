@@ -14,9 +14,6 @@ const logOut = require('./routes/logOut.js')
 const cors = require('cors');
 
 const app = express();
-
-app.set('view engine', 'ejs');
-
 app.use(cors());
 
 app.use(logger('dev'));
@@ -31,9 +28,12 @@ app.use('/logIn', logIn); // LogIn de los operadores
 
 //Esta parte cambiará a web sockets
 app.use(middlewareUsuario); // Middleware que verifica el token con JWT sobre web Sockets
-app.use('/recibirMensaje', recibirMensajeRouter); // Recibir mensajes de los clientes
 app.use('/logOut', logOut);
 app.use('/usuariosPorAtender', usuariosPorAtender); // Obtener usuarios por atender
+
+
+app.use('/recibirMensaje', recibirMensajeRouter); // Recibir mensajes de los clientes
+
 
 
 
