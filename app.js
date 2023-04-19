@@ -1,10 +1,10 @@
 require('dotenv').config();
-const createError = require('http-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const middlewareUsuario = require('./utilities/middelwareUsuario.js');
+const createError = require('http-errors');
 
+const middlewareUsuario = require('./utilities/middelwareUsuario.js');
 const indexRouter = require('./routes/index.js');
 const logIn = require('./routes/logIn.js');
 const recibirMensajeRouter = require('./routes/recibirMensajeRest.js');
@@ -25,13 +25,9 @@ app.use('/favicon.ico', () => null)
 app.use('/', indexRouter);
 app.use('/logIn', logIn); // LogIn de los operadores 
 
-
-//Esta parte cambiará a web sockets
 app.use(middlewareUsuario); // Middleware que verifica el token con JWT sobre web Sockets
 app.use('/logOut', logOut);
 app.use('/usuariosPorAtender', usuariosPorAtender); // Obtener usuarios por atender
-
-
 app.use('/recibirMensaje', recibirMensajeRouter); // Recibir mensajes de los clientes
 
 
