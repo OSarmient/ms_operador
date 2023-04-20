@@ -48,7 +48,7 @@ const getChatsQuery = ({ id_chat, id_usuario, id_operador, documento_usuario, of
       limit: ${limit || null},
       limit_mensajes: ${limit_mensajes || null},
       offset_mensajes: ${offset_mensajes || null}
-      con_operador: ${con_operador}
+      con_operador: ${con_operador || false}
     ) {
       id_chat
       Mensajes {
