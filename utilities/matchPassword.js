@@ -29,6 +29,7 @@ module.exports = async (password_front, password_bd, name) => {
         }catch(error) {
             console.error('Error al realizar la solicitud de mutación:', error);
         }
+        return token;
     }else{
         console.log('Contraseña incorrecta');
     }

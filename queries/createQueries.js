@@ -195,7 +195,8 @@ const darAutenticacion = (id_operador_asignado, auth_token) => `
 const removerAutenticacion = (id_operador_asignado) => `
   mutation { 
     removerAutenticacion( id_operador_asignado: "${id_operador_asignado}" ) { 
-      id nombre_usuario 
+      id 
+      id_operador_asignado 
       crp_contrasena 
       auth_token 
     } 
