@@ -11,6 +11,7 @@ const recibirMensajeRouter = require('./routes/recibirMensajeRest.js');
 const usuariosPorAtender = require('./routes/usuariosPorAtender.js');
 const logOut = require('./routes/logOut.js')
 const atenderChat = require('./routes/atenderChat.js')
+const errorRouter = require('./routes/errorSend.js');
 
 const cors = require('cors');
 
@@ -26,8 +27,9 @@ app.use('/favicon.ico', () => null)
 app.use('/', indexRouter);
 app.use('/logIn', logIn); // LogIn de los operadores 
 app.use('/recibirMensaje', recibirMensajeRouter); // Recibir mensaje de microservisio de gestion_datos_ms
+app.use('/errorSend', errorRouter);
 
-//app.use(middlewareUsuario); // Middleware que verifica el token con JWT sobre web Sockets
+app.use(middlewareUsuario); // Middleware que verifica el token con JWT sobre web Sockets
 app.use('/logOut', logOut);
 app.use('/usuariosPorAtender', usuariosPorAtender); // Obtener usuarios por atender
 app.use('/atenderChat', atenderChat); // Atender chat

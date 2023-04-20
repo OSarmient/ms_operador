@@ -14,7 +14,5 @@ module.exports =
         }
 
         var resultquery = await fetchGraphql(crearMensaje(msg));
-        console.log(crearMensaje(msg));
-        console.log(resultquery);
     };
     
