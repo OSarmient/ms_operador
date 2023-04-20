@@ -34,5 +34,4 @@ module.exports = async (password_front, password_bd, name) => {
         console.log('Contraseña incorrecta');
         return null;
     }
-    return match;
 };

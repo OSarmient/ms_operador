@@ -10,8 +10,6 @@ router.post('/', async (req, res, next) => {
         const { username, password } = req.body;
         const theResponse = await graphqlFetch(getOperadoresQuery({ limit: 10, userid: username }));
 
-        console.log(theResponse.data);
-
         if (theResponse.errors) {
             res.status(401).json({ message: 'Contraseña incorrecta.' });
         } else {

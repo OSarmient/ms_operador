@@ -14,5 +14,6 @@ module.exports =
         }
 
         var resultquery = await fetchGraphql(crearMensaje(msg));
+        return resultquery?.errors ? resultquery.errors[0] : {message: "Mensaje enviado"};
     };
     
