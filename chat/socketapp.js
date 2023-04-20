@@ -24,8 +24,8 @@ io.use((socket, next) => {
 io.on("connection", (socket) => {
 
     socket.on("message", async ({ id_chat, mensaje }) => {
-        var respuestaEnvío = await recibirMensajeResolver({ id_chat, mensaje });
-        io.to(socket.id).emit("notification", respuestaEnvío);
+        var respuestaEnvio = await recibirMensajeResolver({ id_chat, mensaje });
+        io.to(socket.id).emit("notification", {respuestaEnvio:respuestaEnvio, id_chat: id_chat});
     });
 
 });
