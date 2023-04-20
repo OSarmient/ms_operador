@@ -144,6 +144,43 @@ mutation {
 }
 `;
 
+// Funcion para asignar un operador a un chat
+const asignarOperador = (id_chat, id_operador_asignado) => `
+mutation {
+  asignarOperador(id_chat: ${id_chat}, id_operador_asignado: "${id_operador_asignado}") {
+    id_chat
+    Mensajes {
+      id
+      id_chat
+      texto_mensaje
+      de_operador
+      hora_mensaje
+    }
+    Usuarios {
+      id_usuario_temporal
+      numero_de_documento
+      primer_nombre
+      segundo_nombre
+      primer_apellido
+      segundo_apellido
+      telefono
+      correo
+    }
+    Operadores {
+      id
+      id_operador_asignado
+      crp_contrasena
+      auth_token
+    }
+    motivo_sesion {
+      id_motivo_sesion
+      nombre_motivo
+    }
+    tiempo_inicio
+    tiempo_finalizado
+  }
+}`;
+    
 
 // Función para dar autenticación
 const darAutenticacion = (id_operador_asignado, auth_token) => `
@@ -164,4 +201,4 @@ const removerAutenticacion = (id_operador_asignado) => `
     } 
   }`;
 
-module.exports = { crearMensaje, crearUsuario, crearChat, cerrarChat, crearOperador, crearTipodeDocumento, crearMotivoSesion, darAutenticacion, removerAutenticacion };
+module.exports = { asignarOperador, crearMensaje, crearUsuario, crearChat, cerrarChat, crearOperador, crearTipodeDocumento, crearMotivoSesion, darAutenticacion, removerAutenticacion };
