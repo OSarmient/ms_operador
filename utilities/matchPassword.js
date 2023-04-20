@@ -32,6 +32,7 @@ module.exports = async (password_front, password_bd, name) => {
         return token;
     }else{
         console.log('Contraseña incorrecta');
+        return null;
     }
     return match;
 };
