@@ -9,8 +9,8 @@ router.post('/', async (req, res, next) => {
     try {
         const { username, password } = req.body;
         const theResponse = await graphqlFetch(getOperadoresQuery({ limit: 10, userid: username }));
-
-        if (theResponse.errors) {
+    
+        if (theResponse.errors || theResponse.data.operador.length === 0) {
             res.status(401).json({ message: 'Contraseña incorrecta.' });
         } else {
             const isPasswordValid = await matchPassword(password, theResponse.data.operador[0].crp_contrasena, username);
