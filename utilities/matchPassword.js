@@ -3,7 +3,7 @@ const singkey = require('../utilities/jwtSings.js');
 const {request, gql} = require('graphql-request');
 
 module.exports = async (password_front, password_bd, name) => {
-    const match = password_front == password_bd;
+    const match = await bcrypt.compare(password_front, password_bd);
 
     if (match) {
         const token = singkey(name);
