@@ -24,7 +24,7 @@ const getUsuariosQuery = ({ id, documento_usuario, offset, limit }) => `
 const getOperadoresQuery = ({ userid, offset, limit }) => `
   query {
     operador(
-      userid: ${userid || null},
+      userid: ${userid ? `"${userid}"` : null},
       offset: ${offset || null},
       limit: ${limit || null}
     ) {

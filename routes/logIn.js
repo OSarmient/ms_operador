@@ -7,25 +7,17 @@ const matchPassword = require('../utilities/matchPassword.js');
 router.post('/', async (req, res, next) => {
     
     try {
-        const theResponse = await graphqlFetch(getOperadoresQuery({ limit: 10 }));
         const { username, password } = req.body;
-        let userFound = false;
+        const theResponse = await graphqlFetch(getOperadoresQuery({ limit: 10, userid: username }));
 
-        theResponse.data.operador.forEach(async (operador) => {
-            if (operador.id_operador_asignado === username) {
-            userFound = true;
-            const isPasswordValid = await matchPassword(password, operador.crp_contrasena, username);
-
-            if (isPasswordValid) {
-                res.status(200).json({ auth_token: isPasswordValid});
-            } else {
-                res.status(401).json({ message: 'Contraseña incorrecta.' });
-            }
-            }
-        });
-
-        if (!userFound) {
-            res.status(404).json({ message: 'Usuario no encontrado.' });
+        console.log(theResponse.data);
+        
+        if(theResponse.errors) {
+            res.status(401).json({ message: 'Contraseña incorrecta.' });
+        }else{
+            const isPasswordValid = await matchPassword(password, theResponse.data.operador[0].crp_contrasena, username);
+            if(!isPasswordValid) res.status(401).json({ message: 'Contraseña incorrecta.' });
+            res.status(200).json({ auth_token: isPasswordValid});
         }
     } catch (error) {
         console.log(error);
