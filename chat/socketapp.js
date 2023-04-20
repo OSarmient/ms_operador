@@ -11,21 +11,21 @@ const io = require("socket.io")(httpServer, {
 
 io.on("connection", (socket) => {
 
-    socket.on("join", ({auth_token})=>{
-        try{
+    socket.on("join", ({ auth_token }) => {
+        try {
             const decoded = jwtValidate(auth_token);
             socket.join(decoded.id_operador_asignado);
-        }catch(error){
+        } catch (error) {
             socket.emit("error", "No autorizado");
         }
     });
 
-    socket.on("message", ({auth_token, id_chat, mensaje})=>{
-        try{
+    socket.on("message", ({ auth_token, id_chat, mensaje }) => {
+        try {
             const decoded = jwtValidate(auth_token);
             socket.join(decoded.id_operador_asignado);
-            recibirMensajeResolver({ id_chat, mensaje});
-        }catch(error){
+            recibirMensajeResolver({ id_chat, mensaje });
+        } catch (error) {
             socket.emit("error", "No autorizado");
         }
     });
@@ -33,5 +33,5 @@ io.on("connection", (socket) => {
 });
 
 
-httpServer.listen(8001);
+httpServer.listen(process.env.SOCKET_PORT || 8001);
 module.exports = io;
