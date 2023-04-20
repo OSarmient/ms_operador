@@ -72,8 +72,6 @@ const getChatsQuery = ({ id_chat, id_usuario, id_operador, documento_usuario, of
       Operadores {
         id
         id_operador_asignado
-        crp_contrasena
-        auth_token
       }
       motivo_sesion {
         id_motivo_sesion

@@ -5,7 +5,6 @@ var fetchUtilitie = require("../utilities/fetchUtilitie.js");
 
 /* GET home page. */
 router.post('/', async (req,res,next) => {
-    req.body.con_operador = false;
     const query = getChatsQuery(req.body);
     const response = await fetchUtilitie(query);
     res.send(response);
