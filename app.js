@@ -24,14 +24,11 @@ app.use(cookieParser());
 app.use('/favicon.ico', () => null)
 app.use('/', indexRouter);
 app.use('/logIn', logIn); // LogIn de los operadores 
+app.use('/recibirMensaje', recibirMensajeRouter); // Recibir mensaje de microservisio de gestion_datos_ms
 
 app.use(middlewareUsuario); // Middleware que verifica el token con JWT sobre web Sockets
 app.use('/logOut', logOut);
 app.use('/usuariosPorAtender', usuariosPorAtender); // Obtener usuarios por atender
-app.use('/recibirMensaje', recibirMensajeRouter); // Recibir mensajes de los clientes
-
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

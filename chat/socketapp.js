@@ -10,7 +10,6 @@ const io = require("socket.io")(httpServer, {
 });
 
 io.use((socket, next) => {
-    console.log(socket.request.headers);
     try {
         const decoded = jwtValidate(socket.request.headers.auth_token);
         socket.join(decoded.id_operador_asignado);
