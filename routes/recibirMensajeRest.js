@@ -7,7 +7,9 @@ const io = require('../chat/socketapp.js');
 /* GET home page. */
 router.post('/', function (req, res, next) {
     const { id_chat, texto_mensaje, hora_mensaje, id_operador_asignado } = req.body;
-    io.to(id_operador_asignado).emit('message', { id_chat, texto_mensaje, hora_mensaje });
+    if(id_operador_asignado){
+        io.to(id_operador_asignado).emit('message', { id_chat, texto_mensaje, hora_mensaje });
+    }
     res.send({ ms: "Mensaje enviado"});
 });
 
